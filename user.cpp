@@ -377,7 +377,23 @@ void ApplyOnDeath(Context &ctx, Object &obj) {}
 // звуки выстрелов Assets/Sounds/shot.mp3.
 //
 // Возможное решение может занимать примерно 3 строки.
-//
+// 
+static SoundHandle cachedShotSound = nullptr;
+
+void ApplyOnSpawn(Object &obj) {
+    if (!obj.bullet.enabled) {
+        return;
+    }
+
+    if (cachedShotSound == nullptr) {
+        cachedShotSound = LoadSound("Assets/Sounds/shot.mp3");
+    }
+
+    if (cachedShotSound != nullptr) {
+        PlaySound(cachedShotSound);
+    }
+}
+
 void ApplyOnSpawn(Context &ctx, Object &obj) {}
 
 // Задание DrawDeathScreen.
