@@ -303,7 +303,7 @@ void ShootBullet(Context &ctx, Object &player, float dt) {}
 //
 // Рекомендуемые функции для выполнения задания:
 // - Destroy
-//
+//f
 // Возможное решение может занимать примерно 4-5 строк.
 // Ваше решение может сильно отличаться.
 //
@@ -378,23 +378,13 @@ void ApplyOnDeath(Context &ctx, Object &obj) {}
 //
 // Возможное решение может занимать примерно 3 строки.
 // 
-static SoundHandle cachedShotSound = nullptr;
 
-void ApplyOnSpawn(Object &obj) {
-    if (!obj.bullet.enabled) {
-        return;
-    }
-
-    if (cachedShotSound == nullptr) {
-        cachedShotSound = LoadSound("Assets/Sounds/shot.mp3");
-    }
-
-    if (cachedShotSound != nullptr) {
-        PlaySound(cachedShotSound);
+void ApplyOnSpawn(Context &ctx, Object &obj) {
+    if (obj.bullet.enabled) {
+        Sound shotSound = LoadSound("Assets/Sounds/shot.mp3");
+        PlaySound(shotSound);
     }
 }
-
-void ApplyOnSpawn(Context &ctx, Object &obj) {}
 
 // Задание DrawDeathScreen.
 //
