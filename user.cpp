@@ -463,7 +463,35 @@ void DrawFinishScreen(Context &ctx)
     );
 }
 
-void DrawMainScreen(Context &ctx) {}
+void DrawMainScreen(Context &ctx) {
+    int screenWidth = ctx.screen_size.x;
+    int screenHeight = ctx.screen_size.y;
+
+    // Рисуем фон
+    DrawRectangle(0, 0, screenWidth, screenHeight, DARKBLUE);
+
+    // Название игры
+    const char *title = "MIT GAME";
+    int fontSize = 80;
+    int textWidth = MeasureText(title, fontSize);
+    DrawText(title, screenWidth / 2 - textWidth / 2, screenHeight / 2 - 100, fontSize, WHITE);
+
+    // Подзаголовок
+    const char *subtitle = "A Platformer Adventure";
+    fontSize = 30;
+    textWidth = MeasureText(subtitle, fontSize);
+    DrawText(subtitle, screenWidth / 2 - textWidth / 2, screenHeight / 2, fontSize, LIGHTGRAY);
+
+    // Инструкция как начать
+    const char *instruction = "Press ENTER to start";
+    fontSize = 25;
+    textWidth = MeasureText(instruction, fontSize);
+    DrawText(instruction, screenWidth / 2 - textWidth / 2, screenHeight / 2 + 80, fontSize, YELLOW);
+
+    // Управление (внизу экрана)
+    DrawText("Controls:", 50, screenHeight - 120, 20, WHITE);
+    DrawText("A/D - Move | SPACE - Jump | J - Shoot", 50, screenHeight - 90, 20, LIGHTGRAY);
+}
 
 // Задание ConstructMenuScene.
 //
