@@ -426,18 +426,43 @@ void DrawGameOverScreen(Context &ctx) {}
 //
 // Возможное решение может занимать примерно N строк.
 //
-void DrawFinishScreen(Context &ctx) {}
+void DrawFinishScreen(Context &ctx)
+{
+    DrawRectangle(
+        0,
+        0,
+        ctx.screen_size.x,
+        ctx.screen_size.y,
+        BLACK
+    );
 
-// Задание DrawMainScreen.
-//
-// Функция отрисовывает основной экран игры. Свобода фантазии!
-//
-// Рекомендуемые функции для выполнения задания:
-// - MeasureText
-// - DrawText
-//
-// Возможное решение может занимать примерно N строк.
-//
+    const char *title = "YOU WIN!";
+    int font_size = 50;
+
+    int title_width = MeasureText(title, font_size);
+
+    DrawText(
+        title,
+        (ctx.screen_size.x - title_width) / 2,
+        ctx.screen_size.y / 2 - 60,
+        font_size,
+        GREEN
+    );
+
+    const char *hint = "Press ENTER to return to menu";
+
+    int hint_size = 20;
+    int hint_width = MeasureText(hint, hint_size);
+
+    DrawText(
+        hint,
+        (ctx.screen_size.x - hint_width) / 2,
+        ctx.screen_size.y / 2 + 20,
+        hint_size,
+        WHITE
+    );
+}
+
 void DrawMainScreen(Context &ctx) {}
 
 // Задание ConstructMenuScene.
