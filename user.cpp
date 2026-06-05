@@ -127,7 +127,17 @@ void ApplyGravity(Object &obj, float dt) {}
 // Ваше решение может сильно отличаться.
 //
 void MakeJump(Object &obj, float dt) {}
-
+    if (obj.physics.can_jump) {
+        float jumpPower = 350.0f;
+        
+        if (IsKeyDown(KEY_LEFT_SHIFT) or IsKeyDown(KEY_RIGHT_SHIFT)) {//если зажат shift, то прыжок выше
+            jumpPower = 550.0f;
+        }
+        
+        obj.physics.speed.y = jumpPower;
+        obj.physics.can_jump = false;
+    }
+}
 // Задание MoveCameraTowards.
 //
 // Эта функция вызывается каждый кадр игры. Необходимо, чтобы камера следовала
